@@ -27,7 +27,7 @@ export default function Pedidos() {
     return (
       <>
         <Head>
-          <title> Sabores Pasto - Pedidos</title>
+          <title> Canastas Verdes - Pedidos</title>
         </Head>
         <main className="mt-10 mx-auto flex max-w-7xl items-center justify-center">
           <Loading />
@@ -38,7 +38,7 @@ export default function Pedidos() {
   return (
     <>
       <Head>
-        <title> Sabores Pasto - Pedidos</title>
+        <title> Canastas Verdes - Pedidos</title>
       </Head>
       <main className="mt-10 bg-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">

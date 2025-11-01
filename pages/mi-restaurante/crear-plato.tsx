@@ -85,7 +85,7 @@ export default function CrearRestaurante() {
     return (
       <>
         <Head>
-          <title> Sabores Pasto - Crear Plato</title>
+          <title> Canastas Verdes - Crear Plato</title>
         </Head>
         <main className="mt-10 mx-auto flex max-w-7xl items-center justify-center">
           <Loading />
@@ -96,7 +96,7 @@ export default function CrearRestaurante() {
   return (
     <>
       <Head>
-        <title> Sabores Pasto - Crear Plato </title>
+        <title> Canastas Verdes - Crear Producto </title>
       </Head>
 
       <main className="mt-10 mx-auto flex max-w-7xl items-center justify-center">
@@ -104,7 +104,7 @@ export default function CrearRestaurante() {
           <div className="space-y-12">
             <div className="border-b border-gray-900/10 pb-12">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
-                Crear plato
+                Crear producto agrícola
               </h2>
               <p className="mt-1 text-sm leading-6 text-gray-600">
                 Esta información será mostrada públicamente, así que ten cuidado
@@ -117,17 +117,17 @@ export default function CrearRestaurante() {
                     htmlFor="restaurant"
                     className="block text-sm font-medium leading-6 text-gray-900"
                   >
-                    Nombre del plato
+                    Nombre del producto
                   </label>
                   <div className="mt-2">
-                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary-600 sm:max-w-md">
                       <input
                         type="text"
                         name="restaurant"
                         id="restaurant"
                         autoComplete="restaurant"
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        placeholder="Whopper"
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                        placeholder="Lechuga orgánica"
                         required
                         value={form.name}
                         onChange={(e) =>
@@ -152,7 +152,7 @@ export default function CrearRestaurante() {
                       type="text"
                       name="price"
                       id="price"
-                      className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                       placeholder="23.900"
                       required
                       value={form.new_price.toLocaleString("es-CO")}
@@ -171,7 +171,7 @@ export default function CrearRestaurante() {
                       <select
                         id="currency"
                         name="currency"
-                        className="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
+                        className="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm"
                         disabled
                       >
                         <option>COP</option>
@@ -191,7 +191,7 @@ export default function CrearRestaurante() {
                       id="description"
                       name="description"
                       rows={3}
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                       placeholder="Una hamburguesa de ternera a la parrilla, con tomate, lechuga fresca, mayonesa, pepinillos, un toque de ketchup y cebollas en rodajas en un panecillo suave con semillas de sésamo."
                       required
                       value={form.description}
@@ -216,7 +216,7 @@ export default function CrearRestaurante() {
                       type="text"
                       name="img"
                       id="img"
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                       placeholder="https://ibb.co/hLH5kjq"
                       required
                       value={form.image}
@@ -231,7 +231,7 @@ export default function CrearRestaurante() {
                     <a
                       href="https://es.imgbb.com/"
                       target="_blank"
-                      className="text-indigo-600 hover:text-indigo-500"
+                      className="text-primary-600 hover:text-primary-500"
                     >
                       ImgBB
                     </a>{" "}
@@ -246,7 +246,7 @@ export default function CrearRestaurante() {
                       <div className="mt-4 flex text-sm leading-6 text-gray-600">
                         <label
                           htmlFor="file-upload"
-                          className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                          className="relative cursor-pointer rounded-md bg-white font-semibold text-primary-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-primary-600 focus-within:ring-offset-2 hover:text-primary-500"
                         >
                           <span>Upload a file</span>
                           <input
@@ -290,7 +290,7 @@ export default function CrearRestaurante() {
                           <input
                             id={category.id}
                             type="checkbox"
-                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                            className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-600"
                             checked={form.categories.includes(category.name)}
                             onChange={(e) => {
                               if (e.target.checked) {
@@ -339,7 +339,7 @@ export default function CrearRestaurante() {
             </Link>
             <button
               type="submit"
-              className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
             >
               Crear
             </button>

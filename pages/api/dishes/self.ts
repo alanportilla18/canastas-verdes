@@ -29,7 +29,7 @@ async function getMyDishes(
   });
   if (!dishes)
     throw new createHttpError.BadRequest(
-      "El administrador no tiene un restaurante o no tiene platos registrados"
+      "El administrador no tiene una finca o no tiene productos registrados"
     );
 
   res.status(200).json(dishes);

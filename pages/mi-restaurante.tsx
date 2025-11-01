@@ -21,7 +21,7 @@ export default function MiRestaurante() {
     return (
       <>
         <Head>
-          <title> Sabores Pasto - Mi Restaurante</title>
+                    <title> Canastas Verdes - Mi Finca</title>
         </Head>
         <main className="mt-10 mx-auto flex max-w-7xl items-center justify-center">
           <Loading />
@@ -37,7 +37,7 @@ export default function MiRestaurante() {
     <EditRestaurantProvider>
       <EditDishProvider>
         <Head>
-          <title> Sabores Pasto - Mi Restaurante </title>
+          <title> Canastas Verdes - Mi Finca </title>
         </Head>
 
         <main className="mt-10 mt-10">
@@ -59,13 +59,13 @@ export default function MiRestaurante() {
                   )}
                   <Link
                     href="/mi-restaurante/crear-plato"
-                    className="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700 mb-2"
+                    className="inline-block rounded-md border border-transparent bg-primary-600 px-8 py-3 text-center font-medium text-white hover:bg-primary-700 mb-2"
                   >
-                    Crear Plato
+                    Crear Producto
                   </Link>
                   <Link
                     href="/mi-restaurante/crear-categoria"
-                    className="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700"
+                    className="inline-block rounded-md border border-transparent bg-primary-600 px-8 py-3 text-center font-medium text-white hover:bg-primary-700"
                   >
                     Crear Categoria
                   </Link>
@@ -148,9 +148,9 @@ function EditRestaurantButton({
   return (
     <button
       onClick={() => setEditRestaurantModal({ restaurant })}
-      className="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700 mb-2"
+      className="inline-block rounded-md border border-transparent bg-primary-600 px-8 py-3 text-center font-medium text-white hover:bg-primary-700 mb-2"
     >
-      Editar restaurante
+      Editar finca
     </button>
   );
 }

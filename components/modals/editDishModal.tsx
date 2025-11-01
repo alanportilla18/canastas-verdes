@@ -128,7 +128,7 @@ export default function EditDishModal({
                                 <p className="sr-only">{3.9} de 5 estrellas</p>
                                 <a
                                   href="#"
-                                  className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                                  className="ml-3 text-sm font-medium text-primary-600 hover:text-primary-500"
                                 >
                                   10 Comentarios
                                 </a>
@@ -253,7 +253,7 @@ function Categories({
                           <input
                             id={category.id}
                             type="checkbox"
-                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                            className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-600"
                             checked
                             disabled
                           />
@@ -276,7 +276,7 @@ function Categories({
                         <input
                           id={category.id}
                           type="checkbox"
-                          className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                          className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-600"
                           checked={newCategories.includes(category.name)}
                           onChange={(e) => {
                             if (e.target.checked) {
@@ -313,7 +313,7 @@ function Categories({
         </div>
         <button
           type="submit"
-          className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-primary-600 px-8 py-3 text-base font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
         >
           Agregar Categoria
         </button>
@@ -412,13 +412,13 @@ function EditDish({
                   Nombre del plato
                 </label>
                 <div className="mt-2">
-                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary-600 sm:max-w-md">
                     <input
                       type="text"
                       name="restaurant"
                       id="restaurant"
                       autoComplete="restaurant"
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                       required
                       value={form.name}
                       onChange={(e) =>
@@ -446,7 +446,7 @@ function EditDish({
                     type="text"
                     name="price"
                     id="price"
-                    className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                     value={form.new_price.toLocaleString("es-CO")}
                     onChange={(e) =>
                       setForm({
@@ -464,7 +464,7 @@ function EditDish({
                     <select
                       id="currency"
                       name="currency"
-                      className="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
+                      className="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm"
                       disabled
                     >
                       <option>COP</option>
@@ -484,7 +484,7 @@ function EditDish({
                     id="description"
                     name="description"
                     rows={3}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                     value={form.description}
                     onChange={(e) =>
                       setForm({
@@ -508,7 +508,7 @@ function EditDish({
                     type="text"
                     name="img"
                     id="img"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                     required
                     value={form.image}
                     onChange={(e) =>
@@ -525,7 +525,7 @@ function EditDish({
                   <a
                     href="https://es.imgbb.com/"
                     target="_blank"
-                    className="text-indigo-600 hover:text-indigo-500"
+                    className="text-primary-600 hover:text-primary-500"
                   >
                     ImgBB
                   </a>{" "}
@@ -540,7 +540,7 @@ function EditDish({
                     <div className="mt-4 flex text-sm leading-6 text-gray-600">
                       <label
                         htmlFor="file-upload"
-                        className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                        className="relative cursor-pointer rounded-md bg-white font-semibold text-primary-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-primary-600 focus-within:ring-offset-2 hover:text-primary-500"
                       >
                         <span>Upload a file</span>
                         <input
@@ -578,13 +578,13 @@ function EditDish({
                 },
               });
             }}
-            className="rounded-md bg-red-500 hover:bg-red-400 px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="rounded-md bg-red-500 hover:bg-red-400 px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
           >
             Borrar
           </button>
           <button
             type="submit"
-            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
           >
             Actualizar
           </button>

@@ -29,7 +29,7 @@ export default function Home() {
     return (
       <>
         <Head>
-          <title> Sabores Pasto - Inicio</title>
+                    <title> Canastas Verdes - Inicio</title>
         </Head>
         <main className="mt-10 mx-auto flex max-w-7xl items-center justify-center">
           <Loading />
@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title> Sabores Pasto - Inicio </title>
+                <title> Canastas Verdes - Inicio </title>
       </Head>
       <main className="mt-10 mx-auto max-w-7xl">
         <Restaurants restaurants={restaurants} />
@@ -48,7 +48,7 @@ export default function Home() {
           restaurants={restaurants?.filter(
             (restaurant) => restaurant.isOnOffer
           )}
-          title="Restaurantes en oferta"
+          title="Fincas con productos en oferta"
         />
 
         <FavoritesRestaurants account={account} />
@@ -59,7 +59,7 @@ export default function Home() {
 
 function Restaurants({
   restaurants,
-  title = "Restaurantes",
+  title = "Fincas",
 }: {
   restaurants: Restaurant[] | undefined;
   title?: string;

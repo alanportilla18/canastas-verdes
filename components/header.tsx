@@ -19,18 +19,18 @@ export default function Header() {
       >
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Sabores Pasto</span>
+            <span className="sr-only">Canastas Verdes</span>
             <Image
               className="h-8 w-auto hidden sm:block"
               src="/saborespasto.svg"
-              alt="Sabores Pasto Logo"
+              alt="Canastas Verdes Logo"
               width="262"
               height="32"
             />
             <Image
               className="h-8 w-auto sm:hidden"
               src="/icon.svg"
-              alt="Sabores Pasto Logo"
+              alt="Canastas Verdes Logo"
               width="262"
               height="32"
             />
@@ -77,7 +77,7 @@ export default function Header() {
                     >
                       <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                         <item.icon
-                          className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                          className="h-6 w-6 text-gray-600 group-hover:text-primary-600"
                           aria-hidden="true"
                         />
                       </div>
@@ -134,7 +134,7 @@ export default function Header() {
                   href="/mi-restaurante"
                   className="text-sm font-semibold leading-6 text-gray-900 mr-4"
                 >
-                  Mi restaurant
+                  Mi finca
                 </Link>
                 <Link
                   href="/mi-restaurante/pedidos"
@@ -181,7 +181,7 @@ export default function Header() {
             <>
               <Link
                 href="/crear-cuenta"
-                className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 leading-6 mr-4"
+                className="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 leading-6 mr-4"
               >
                 Registrarse
               </Link>
@@ -206,11 +206,11 @@ export default function Header() {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Sabores Pasto</span>
+              <span className="sr-only">Canastas Verdes</span>
               <Image
                 className="h-8 w-auto"
                 src="/icon.svg"
-                alt="Sabores Pasto Icono"
+                alt="Canastas Verdes Icono"
                 width="54"
                 height="32"
               />
@@ -238,7 +238,7 @@ export default function Header() {
                         href="/mi-restaurante"
                         className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                       >
-                        Mi restaurante
+                        Mi finca
                       </Link>
                       <Link
                         href="/mi-restaurante/pedidos"

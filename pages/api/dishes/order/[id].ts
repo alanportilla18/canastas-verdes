@@ -38,7 +38,7 @@ async function getMyDishesInOrder(
 
   if (!dishes)
     throw new createHttpError.BadRequest(
-      "El pedido no existe o no tiene platos registrados"
+      "El pedido no existe o no tiene productos registrados"
     );
 
   res.status(200).json(dishes);

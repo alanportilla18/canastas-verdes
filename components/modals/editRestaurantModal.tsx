@@ -42,7 +42,7 @@ export default function EditRestaurantModal({
   const handleSubmit = useCallback(
     async (e: FormEvent) => {
       e.preventDefault();
-      setLoadingModal({ title: "Actualizando restaurante..." });
+      setLoadingModal({ title: "Actualizando finca..." });
       try {
         const updateRestaurant = UpdateRestaurantSchema.parse(form);
         const prevRestaurant = UpdateRestaurantSchema.parse(restaurant);
@@ -61,8 +61,8 @@ export default function EditRestaurantModal({
         });
 
         setNotification({
-          title: "Restaurante actualizado",
-          description: "El restaurante se ha actualizado correctamente",
+          title: "Finca actualizada",
+          description: "La finca se ha actualizado correctamente",
         });
 
         await mutate("/restaurants/dishes/self");
@@ -139,7 +139,7 @@ export default function EditRestaurantModal({
                         <div className="space-y-12">
                           <div className="border-b border-gray-900/10 pb-12">
                             <h2 className="text-base font-semibold leading-7 text-gray-900">
-                              Actualizar restaurante
+                              Actualizar finca
                             </h2>
                             <p className="mt-1 text-sm leading-6 text-gray-600">
                               Esta información será mostrada públicamente, así
@@ -152,17 +152,17 @@ export default function EditRestaurantModal({
                                   htmlFor="restaurant"
                                   className="block text-sm font-medium leading-6 text-gray-900"
                                 >
-                                  Nombre del restaurante
+                                  Nombre de la finca
                                 </label>
                                 <div className="mt-2">
-                                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary-600 sm:max-w-md">
                                     <input
                                       type="text"
                                       name="restaurant"
                                       id="restaurant"
                                       autoComplete="restaurant"
-                                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                      placeholder="Burger King"
+                                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                                      placeholder="Finca el Placer"
                                       required
                                       value={form.name}
                                       onChange={(e) =>
@@ -184,9 +184,9 @@ export default function EditRestaurantModal({
                                   Slug
                                 </label>
                                 <div className="mt-2">
-                                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary-600 sm:max-w-md">
                                     <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
-                                      saborespasto.vercel.app/restaurantes/
+                                      canastasverdes.com/fincas/
                                     </span>
                                     <input
                                       type="text"
@@ -194,7 +194,7 @@ export default function EditRestaurantModal({
                                       id="slug"
                                       autoComplete="slug"
                                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                      placeholder="burger-king"
+                                      placeholder="finca-el-placer"
                                       required
                                       value={form.slug}
                                       onChange={(e) =>
@@ -220,8 +220,8 @@ export default function EditRestaurantModal({
                                     id="description"
                                     name="description"
                                     rows={3}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    placeholder="Burger King es una cadena de restaurantes de comida rápida estadounidense, especializada en hamburguesas."
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                                    placeholder="La Finca el Placer es un lugar especial para disfrutar de productos frescos y naturales."
                                     required
                                     value={form.description}
                                     onChange={(e) =>
@@ -233,8 +233,7 @@ export default function EditRestaurantModal({
                                   />
                                 </div>
                                 <p className="mt-3 text-sm leading-6 text-gray-600">
-                                  Escribe una breve descripción de tu
-                                  restaurante.
+                                  Escribe una breve descripción de tu finca.
                                 </p>
                               </div>
                               <div className="col-span-full">
@@ -250,7 +249,7 @@ export default function EditRestaurantModal({
                                     name="street-address"
                                     id="street-address"
                                     autoComplete="street-address"
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                                     placeholder="Calle 1 # 2 - 3"
                                     required
                                     value={form.address}
@@ -272,7 +271,7 @@ export default function EditRestaurantModal({
                                   Telefono
                                 </label>
                                 <div className="mt-2">
-                                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary-600 sm:max-w-md">
                                     <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
                                       +57
                                     </span>
@@ -308,7 +307,7 @@ export default function EditRestaurantModal({
                                     type="text"
                                     name="img"
                                     id="img"
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                                     placeholder="https://ibb.co/hLH5kjq"
                                     required
                                     value={form.image}
@@ -321,12 +320,12 @@ export default function EditRestaurantModal({
                                   />
                                 </div>
                                 <p className="mt-3 text-sm leading-6 text-gray-600">
-                                  Escribe la url de la foto de tu restaurante,
+                                  Escribe la url de la foto de tu finca,
                                   puedes usar el servicio de{" "}
                                   <a
                                     href="https://es.imgbb.com/"
                                     target="_blank"
-                                    className="text-indigo-600 hover:text-indigo-500"
+                                    className="text-primary-600 hover:text-primary-500"
                                   >
                                     ImgBB
                                   </a>{" "}
@@ -341,7 +340,7 @@ export default function EditRestaurantModal({
                                     <div className="mt-4 flex text-sm leading-6 text-gray-600">
                                       <label
                                         htmlFor="file-upload"
-                                        className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                                        className="relative cursor-pointer rounded-md bg-white font-semibold text-primary-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-primary-600 focus-within:ring-offset-2 hover:text-primary-500"
                                       >
                                         <span>Upload a file</span>
                                         <input
@@ -371,7 +370,7 @@ export default function EditRestaurantModal({
                         <div className="my-6 flex items-center justify-end gap-x-6">
                           <button
                             type="submit"
-                            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            className="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
                           >
                             Editar
                           </button>

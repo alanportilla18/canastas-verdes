@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -21,33 +18,33 @@ model Account {
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
   deletedAt          DateTime?
-  restaurant         Restaurant?
-  Order              Order[]
-  RestaurantReview   RestaurantReview[]
   DishReview         DishReview[]
-  FavoriteRestaurant FavoriteRestaurant[]
   FavoriteDish       FavoriteDish[]
+  FavoriteRestaurant FavoriteRestaurant[]
+  Order              Order[]
+  restaurant         Restaurant?
+  RestaurantReview   RestaurantReview[]
 }
 
 model Restaurant {
   id                 String               @id @default(uuid())
   name               String
-  description        String
   slug               String               @unique
   address            String
   phone              String
   image              String
-  isOnOffer          Boolean              @default(false)
-  admin              Account              @relation(fields: [adminId], references: [id])
   adminId            String               @unique
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
   deletedAt          DateTime?
-  Dish               Dish[]
-  Order              Order[]
-  RestaurantReview   RestaurantReview[]
+  description        String
   rating             Float                @default(0)
+  isOnOffer          Boolean              @default(false)
+  Dish               Dish[]
   FavoriteRestaurant FavoriteRestaurant[]
+  Order              Order[]
+  admin              Account              @relation(fields: [adminId], references: [id])
+  RestaurantReview   RestaurantReview[]
 }
 
 model Dish {
@@ -57,15 +54,15 @@ model Dish {
   price              Float?
   new_price          Float
   image              String
-  restaurant         Restaurant           @relation(fields: [restaurantId], references: [id])
   restaurantId       String
   createdAt          DateTime             @default(now())
-  updatedAt          DateTime             @updatedAt
   deletedAt          DateTime?
-  DishesInOrder      DishesInOrder[]
-  CategoriesInDishes CategoriesInDishes[]
-  DishReview         DishReview[]
+  updatedAt          DateTime             @updatedAt
   rating             Float                @default(0)
+  CategoriesInDishes CategoriesInDishes[]
+  restaurant         Restaurant           @relation(fields: [restaurantId], references: [id])
+  DishReview         DishReview[]
+  DishesInOrder      DishesInOrder[]
   FavoriteDish       FavoriteDish[]
 }
 
@@ -74,27 +71,27 @@ model Order {
   name          String
   address       String
   phone         String
-  status        String          @default("pending")
-  account       Account         @relation(fields: [accountId], references: [id])
   accountId     String
-  restaurant    Restaurant      @relation(fields: [restaurantId], references: [id])
   restaurantId  String
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
   deletedAt     DateTime?
+  status        String          @default("pending")
   DishesInOrder DishesInOrder[]
+  account       Account         @relation(fields: [accountId], references: [id])
+  restaurant    Restaurant      @relation(fields: [restaurantId], references: [id])
 }
 
 model DishesInOrder {
   id        String    @id @default(uuid())
   quantity  Int
-  dish      Dish      @relation(fields: [dishId], references: [id])
   dishId    String
-  order     Order     @relation(fields: [orderId], references: [id])
   orderId   String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+  dish      Dish      @relation(fields: [dishId], references: [id])
+  order     Order     @relation(fields: [orderId], references: [id])
 
   @@unique([dishId, orderId])
 }
@@ -110,13 +107,13 @@ model Category {
 
 model CategoriesInDishes {
   id         String    @id @default(uuid())
-  category   Category  @relation(fields: [categoryId], references: [id])
   categoryId String
-  dish       Dish      @relation(fields: [dishId], references: [id])
   dishId     String
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
   deletedAt  DateTime?
+  category   Category  @relation(fields: [categoryId], references: [id])
+  dish       Dish      @relation(fields: [dishId], references: [id])
 
   @@unique([categoryId, dishId])
 }
@@ -126,12 +123,12 @@ model RestaurantReview {
   comment      String
   rating       Int
   accountId    String
-  account      Account    @relation(fields: [accountId], references: [id])
   restaurantId String
-  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
   deletedAt    DateTime?
+  account      Account    @relation(fields: [accountId], references: [id])
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
 
   @@unique([accountId, restaurantId])
 }
@@ -141,12 +138,12 @@ model DishReview {
   comment   String
   rating    Int
   accountId String
-  account   Account   @relation(fields: [accountId], references: [id])
   dishId    String
-  dish      Dish      @relation(fields: [dishId], references: [id])
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+  account   Account   @relation(fields: [accountId], references: [id])
+  dish      Dish      @relation(fields: [dishId], references: [id])
 
   @@unique([accountId, dishId])
 }
@@ -154,12 +151,12 @@ model DishReview {
 model FavoriteRestaurant {
   id           String     @id @default(uuid())
   accountId    String
-  account      Account    @relation(fields: [accountId], references: [id])
   restaurantId String
-  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
   deletedAt    DateTime?
+  account      Account    @relation(fields: [accountId], references: [id])
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
 
   @@unique([accountId, restaurantId])
 }
@@ -167,12 +164,12 @@ model FavoriteRestaurant {
 model FavoriteDish {
   id        String    @id @default(uuid())
   accountId String
-  account   Account   @relation(fields: [accountId], references: [id])
   dishId    String
-  dish      Dish      @relation(fields: [dishId], references: [id])
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+  account   Account   @relation(fields: [accountId], references: [id])
+  dish      Dish      @relation(fields: [dishId], references: [id])
 
   @@unique([accountId, dishId])
 }

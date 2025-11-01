@@ -15,7 +15,7 @@ export default function MiRestaurante() {
     return (
       <>
         <Head>
-          <title> Sabores Pasto - Mi Cuenta</title>
+          <title> Canastas Verdes - Mi Cuenta</title>
         </Head>
         <main className="mt-10 mx-auto flex max-w-7xl items-center justify-center">
           <Loading />
@@ -27,7 +27,7 @@ export default function MiRestaurante() {
     <>
       <EditAccountProvider>
         <Head>
-          <title> Sabores Pasto - Mi Cuenta </title>
+          <title> Canastas Verdes - Mi Cuenta </title>
         </Head>
 
         <main className="mt-10 mx-auto max-w-7xl px-6 lg:px-8">
@@ -96,7 +96,7 @@ function EditAccountButton({ account }: { account: Account }) {
 
   return (
     <button
-      className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
+      className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded"
       onClick={() => setEditAccountModal({ account })}
     >
       Editar perfil

@@ -11,7 +11,7 @@ export default function CrearCuenta() {
     return (
       <>
         <Head>
-          <title> Sabores Pasto - Crear Cuenta</title>
+          <title> Canastas Verdes - Crear Cuenta</title>
         </Head>
         <main className="mt-10 mx-auto flex max-w-7xl items-center justify-center">
           <Loading />
@@ -22,7 +22,7 @@ export default function CrearCuenta() {
   return (
     <>
       <Head>
-        <title>Sabores Pasto - Crear Cuenta</title>
+                  <title> Canastas Verdes - Crear Cuenta</title>
       </Head>
 
       <main className="mt-10 bg-white">
@@ -37,7 +37,7 @@ export default function CrearCuenta() {
                 usuarios. Elige la que más te convenga, para más información
                 <Link
                   href="/" // TODO: Change this to the correct link
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                  className="font-medium text-primary-600 hover:text-primary-500"
                 >
                   {" "}
                   haz click aquí.
@@ -46,7 +46,7 @@ export default function CrearCuenta() {
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <Link
                   href="/crear-cuenta/usuario"
-                  className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="rounded-md bg-primary-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
                 >
                   Usuario
                 </Link>

@@ -16,7 +16,7 @@ export function Dishes({
   return (
     <div>
       <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-        Platos
+        Productos
       </h2>
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         {dishes.map((dish) => (
@@ -77,7 +77,7 @@ export function Dishes({
                 <StarIcon
                   key={rating}
                   className={`${
-                    dish.rating > rating ? "text-indigo-600" : "text-gray-200"
+                    dish.rating > rating ? "text-primary-600" : "text-gray-200"
                   } h-5 w-5 flex-shrink-0`}
                   aria-hidden="true"
                 />

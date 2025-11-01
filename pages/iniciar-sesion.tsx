@@ -57,7 +57,7 @@ export default function IniciarSesion() {
     return (
       <>
         <Head>
-          <title> Sabores Pasto - Iniciar Sesion</title>
+          <title> Canastas Verdes - Iniciar Sesion</title>
         </Head>
         <main className="mt-10 mx-auto flex max-w-7xl items-center justify-center">
           <Loading />
@@ -68,7 +68,7 @@ export default function IniciarSesion() {
   return (
     <>
       <Head>
-        <title> Sabores Pasto - Iniciar Sesion</title>
+        <title> Canastas Verdes - Iniciar Sesion</title>
       </Head>
 
       <main className="mt-10 flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -76,7 +76,7 @@ export default function IniciarSesion() {
           <Image
             className="mx-auto h-10 w-auto"
             src="/icon.svg"
-            alt="Sabores Pasto Icono"
+            alt="Canastas Verdes Icono"
             width="67"
             height="40"
           />
@@ -101,7 +101,7 @@ export default function IniciarSesion() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                   value={form.email}
                   onChange={(e) =>
                     setForm((prev) => ({ ...prev, email: e.target.value }))
@@ -121,7 +121,7 @@ export default function IniciarSesion() {
                 <div className="text-sm">
                   <a
                     href="#" // TODO: Add link to forgot password page
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                    className="font-semibold text-primary-600 hover:text-primary-500"
                   >
                     ¿Olvidaste tu contraseña?
                   </a>
@@ -134,7 +134,7 @@ export default function IniciarSesion() {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                   value={form.password}
                   onChange={(e) =>
                     setForm((prev) => ({ ...prev, password: e.target.value }))
@@ -146,7 +146,7 @@ export default function IniciarSesion() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md bg-primary-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
               >
                 Iniciar sesión
               </button>
@@ -159,7 +159,7 @@ export default function IniciarSesion() {
             ¿No tienes una cuenta?{" "}
             <Link
               href="/crear-cuenta"
-              className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+              className="font-semibold leading-6 text-primary-600 hover:text-primary-500"
             >
               Registrate
             </Link>
