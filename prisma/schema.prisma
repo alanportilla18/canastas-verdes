@@ -173,3 +173,22 @@ model FavoriteDish {
 
   @@unique([accountId, dishId])
 }
+
+model ProductosVender {
+  id                   Int      @id @default(autoincrement())
+  itemNumber           Int
+  codigo               String   @unique
+  municipio            String
+  categoria            String
+  producto             String
+  presentacion         String
+  costoPcc             Float
+  porcentajeLogistica  Float
+  porcentajeTransporte Float
+  precioSugerido       Float
+  precioVenta          Float
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@map("productos_vender")
+}

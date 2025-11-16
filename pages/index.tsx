@@ -1,4 +1,9 @@
 import Head from "next/head";
+import Image from "next/image";
+import {
+  GetServerSideProps,
+  InferGetServerSidePropsType,
+} from "next";
 import { useCallback, useEffect, useState } from "react";
 import useSWR from "swr";
 import { useRouter } from "next/router";
@@ -12,8 +17,13 @@ import { apiFetcherSWR } from "@/lib/fetcher";
 import { Restaurant, RestaurantsSchema } from "@/types/Restaurant";
 import { ErrorResponse } from "@/types/ErrorResponse";
 import { AccountAndFavorites } from "@/types/AccountAndFavorites";
+import { prisma } from "@/lib/db";
+import { ProductoVender } from "@/types/ProductoVender";
+import PapaBlancaImg from "@/images/PAPA-BLANCA.jpg";
 
-export default function Home() {
+export default function Home({
+  productos,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { isLoadingAccount, account } = useNoAdmin({
     redirectTo: "/mi-restaurante",
   });
@@ -29,7 +39,7 @@ export default function Home() {
     return (
       <>
         <Head>
-                    <title> Canastas Verdes - Inicio</title>
+          <title> Canastas Verdes - Inicio</title>
         </Head>
         <main className="mt-10 mx-auto flex max-w-7xl items-center justify-center">
           <Loading />
@@ -40,7 +50,7 @@ export default function Home() {
   return (
     <>
       <Head>
-                <title> Canastas Verdes - Inicio </title>
+        <title> Canastas Verdes - Inicio </title>
       </Head>
       <main className="mt-10 mx-auto max-w-7xl">
         <Restaurants restaurants={restaurants} />
@@ -52,10 +62,99 @@ export default function Home() {
         />
 
         <FavoritesRestaurants account={account} />
+        <ProductsGrid productos={productos} />
       </main>
     </>
   );
 }
+
+type ProductosGridProps = {
+  productos: ProductoVender[];
+};
+
+function ProductsGrid({ productos }: ProductosGridProps) {
+  if (!productos || productos.length === 0) return null;
+
+  return (
+    <section className="mb-16 px-4">
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <p className="text-sm uppercase tracking-wide text-primary-600 font-semibold">
+            Catálogo de productos
+          </p>
+          <h2 className="text-3xl font-bold text-gray-900">
+            Disponibles para tu canasta
+          </h2>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {productos.map((producto) => (
+          <article
+            key={producto.id}
+            className="rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+          >
+            <div className="relative h-48 w-full overflow-hidden rounded-t-2xl bg-gray-50">
+              <Image
+                src={PapaBlancaImg}
+                alt={producto.producto}
+                fill
+                sizes="(max-width: 1024px) 50vw, 25vw"
+                className="object-cover"
+                priority
+              />
+            </div>
+            <div className="p-4 space-y-2">
+              <h3 className="text-lg font-semibold text-gray-900">
+                {producto.producto}
+              </h3>
+              <p className="text-2xl font-bold text-primary-600">
+                {formatCurrency(producto.precioVenta)}
+              </p>
+              <dl className="text-sm text-gray-600 space-y-1">
+                <div className="flex justify-between">
+                  <dt className="font-medium">Municipio:</dt>
+                  <dd>{producto.municipio}</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt className="font-medium">Presentación:</dt>
+                  <dd>{producto.presentacion}</dd>
+                </div>
+              </dl>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+const currencyFormatter = new Intl.NumberFormat("es-CO", {
+  style: "currency",
+  currency: "COP",
+  minimumFractionDigits: 0,
+});
+
+function formatCurrency(value: number) {
+  return currencyFormatter.format(value);
+}
+
+type ProductoVenderRecord = Awaited<
+  ReturnType<typeof prisma.productosVender.findMany>
+>[number];
+
+const serializeProducto = (
+  producto: ProductoVenderRecord
+): ProductoVender => ({
+  ...producto,
+  createdAt:
+    producto.createdAt instanceof Date
+      ? producto.createdAt.toISOString()
+      : producto.createdAt,
+  updatedAt:
+    producto.updatedAt instanceof Date
+      ? producto.updatedAt.toISOString()
+      : producto.updatedAt,
+});
 
 function Restaurants({
   restaurants,
@@ -122,9 +221,8 @@ function Restaurants({
                   className="text-2xl cursor-pointer"
                 >
                   <MinusSmallIcon
-                    className={`w-8 h-8 text-gray-400 ${
-                      currentIndex === slideIndex ? "text-gray-800" : ""
-                    }`}
+                    className={`w-8 h-8 text-gray-400 ${currentIndex === slideIndex ? "text-gray-800" : ""
+                      }`}
                   />
                 </div>
               ))}
@@ -204,9 +302,8 @@ function FavoritesRestaurants({
                   className="text-2xl cursor-pointer"
                 >
                   <MinusSmallIcon
-                    className={`w-8 h-8 text-gray-400 ${
-                      currentIndex === slideIndex ? "text-gray-800" : ""
-                    }`}
+                    className={`w-8 h-8 text-gray-400 ${currentIndex === slideIndex ? "text-gray-800" : ""
+                      }`}
                   />
                 </div>
               ))}
@@ -217,3 +314,19 @@ function FavoritesRestaurants({
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps<{
+  productos: ProductoVender[];
+}> = async () => {
+  const productosDb = await prisma.productosVender.findMany({
+    orderBy: {
+      producto: "asc",
+    },
+  });
+
+  return {
+    props: {
+      productos: productosDb.map(serializeProducto),
+    },
+  };
+};
