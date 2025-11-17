@@ -6,8 +6,8 @@ import { fileURLToPath } from 'node:url';
 import XLSX from 'xlsx';
 import { PrismaClient } from '@prisma/client';
 
-const EXCEL_BASENAME = 'bD_canastasVerdes.xlsx';
-const excelPath = path.join(process.cwd(), EXCEL_BASENAME);
+export const EXCEL_BASENAME = 'bD_canastasVerdes.xlsx';
+export const EXCEL_FULL_PATH = path.join(process.cwd(), EXCEL_BASENAME);
 const COLUMNS = {
     item: 'Ítems',
     code: 'Código',
@@ -44,7 +44,7 @@ const sanitizeText = (value) => {
     return String(value).trim();
 };
 
-export async function importProductosVender({ filePath = excelPath, quiet = false } = {}) {
+export async function importProductosVender({ filePath = EXCEL_FULL_PATH, quiet = false } = {}) {
     if (!fs.existsSync(filePath)) {
         throw new Error(`No se encontró el archivo ${EXCEL_BASENAME} en ${process.cwd()}`);
     }

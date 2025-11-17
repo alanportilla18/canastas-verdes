@@ -1,0 +1,3 @@
+// actualizar precios de productos en la pagina web despues de haber cambiado el precio en el excel
+DATABASE_URL="postgresql://postgres:oscar@localhost:5432/canastas_verdes?schema=public" npm run watch:productos
+
