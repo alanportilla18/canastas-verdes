@@ -2,6 +2,7 @@ import { useEditDishContext } from "@/context/EditDish";
 import { useQuickviewsContext } from "@/context/Quickviews";
 import { DishAndCategories } from "@/types/DishAndCategories";
 import { StarIcon } from "@heroicons/react/20/solid";
+import Image from "next/image";
 
 export function Dishes({
   dishes,
@@ -21,11 +22,13 @@ export function Dishes({
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         {dishes.map((dish) => (
           <div key={dish.id} className="group relative">
-            <div className="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:h-80">
-              <img
+            <div className="relative min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:h-80">
+              <Image
                 src={dish.image}
                 alt={dish.description}
-                className="h-full w-full object-cover object-center lg:h-full lg:w-full group-hover:opacity-75"
+                fill
+                className="object-cover object-center lg:h-full lg:w-full group-hover:opacity-75"
+                sizes="(min-width: 1024px) 25vw, 50vw"
               />
               <div className="absolute flex items-end justify-center opacity-0 focus:opacity-100 group-hover:opacity-100">
                 <div className="m-4 w-full rounded-md bg-white bg-opacity-75 px-4 py-2 text-sm text-black  text-center">
@@ -76,9 +79,8 @@ export function Dishes({
               {[0, 1, 2, 3, 4].map((rating) => (
                 <StarIcon
                   key={rating}
-                  className={`${
-                    dish.rating > rating ? "text-primary-600" : "text-gray-200"
-                  } h-5 w-5 flex-shrink-0`}
+                  className={`${dish.rating > rating ? "text-primary-600" : "text-gray-200"
+                    } h-5 w-5 flex-shrink-0`}
                   aria-hidden="true"
                 />
               ))}

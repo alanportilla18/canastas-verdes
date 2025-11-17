@@ -2,6 +2,7 @@ import { Fragment, useCallback } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useNotificationContext } from "@/context/Notification";
+import Image from "next/image";
 import { useShoppingCartContext } from "@/context/ShoppingCart";
 import { useOrderContext } from "@/context/Order";
 
@@ -78,11 +79,13 @@ export default function ShoppingCart({ restaurantId }: ShoppingCartProps) {
                                 key={product.dish.id}
                                 className="flex flex-wrap py-6"
                               >
-                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                  <img
+                                <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                  <Image
                                     src={product.dish.image}
-                                    alt=""
-                                    className="h-full w-full object-cover object-center"
+                                    alt={product.dish.name}
+                                    fill
+                                    className="object-cover object-center"
+                                    sizes="96px"
                                   />
                                 </div>
 

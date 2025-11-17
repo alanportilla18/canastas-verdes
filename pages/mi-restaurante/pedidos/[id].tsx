@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import Image from "next/image";
 
 import { ErrorResponse } from "@/types/ErrorResponse";
 import { apiFetcher, apiFetcherSWR } from "@/lib/fetcher";
@@ -134,11 +135,13 @@ export default function Pedido() {
                   {order?.DishesInOrder &&
                     order.DishesInOrder.map((product) => (
                       <li key={product.dish.id} className="flex flex-wrap py-6">
-                        <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                          <img
+                        <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                          <Image
                             src={product.dish.image}
-                            alt=""
-                            className="h-full w-full object-cover object-center"
+                            alt={product.dish.name}
+                            fill
+                            className="object-cover object-center"
+                            sizes="96px"
                           />
                         </div>
 

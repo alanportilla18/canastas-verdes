@@ -1,5 +1,6 @@
 import { FormEvent, Fragment, useCallback, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import Image from "next/image";
 
 import { Account } from "@/types/Account";
 import { CreateOrderSchema, Order, OrderSchema } from "@/types/Order";
@@ -18,7 +19,7 @@ export interface OrderModalProps {
 
 export default function OrderModal({
   restaurantId,
-  onClose = () => {},
+  onClose = () => { },
 }: OrderModalProps) {
   const [open, setOpen] = useState(true);
   const { account } = useAuthContext() as { account: Account };
@@ -219,11 +220,13 @@ export default function OrderModal({
                                 key={product.dish.id}
                                 className="flex flex-wrap py-6"
                               >
-                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                  <img
+                                <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                  <Image
                                     src={product.dish.image}
-                                    alt=""
-                                    className="h-full w-full object-cover object-center"
+                                    alt={product.dish.name}
+                                    fill
+                                    className="object-cover object-center"
+                                    sizes="96px"
                                   />
                                 </div>
 

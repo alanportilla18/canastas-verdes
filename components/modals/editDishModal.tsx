@@ -3,6 +3,7 @@ import useSWR, { useSWRConfig } from "swr";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/20/solid";
+import Image from "next/image";
 
 import { CategoriesSchema, Category } from "@/types/Category";
 import { apiFetcher, apiFetcherSWR } from "@/lib/fetcher";
@@ -24,7 +25,7 @@ export interface EditDishModalProps {
 
 export default function EditDishModal({
   dish,
-  onClose = () => {},
+  onClose = () => { },
 }: EditDishModalProps) {
   const [open, setOpen] = useState(true);
 
@@ -79,11 +80,13 @@ export default function EditDishModal({
 
                       <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
                         <div className="sm:col-span-4 lg:col-span-5">
-                          <div className="aspect-h-3 aspect-w-2 overflow-hidden rounded-lg bg-gray-100">
-                            <img
+                          <div className="relative aspect-h-3 aspect-w-2 overflow-hidden rounded-lg bg-gray-100">
+                            <Image
                               src={dish.image}
-                              alt={""}
+                              alt={`Imagen de ${dish.name}`}
+                              fill
                               className="object-cover object-center"
+                              sizes="(min-width: 1024px) 320px, 100vw"
                             />
                           </div>
 
@@ -116,11 +119,10 @@ export default function EditDishModal({
                                   {[0, 1, 2, 3, 4].map((rating) => (
                                     <StarIcon
                                       key={rating}
-                                      className={`${
-                                        3.9 > rating
+                                      className={`${3.9 > rating
                                           ? "text-gray-900"
                                           : "text-gray-200"
-                                      } h-5 w-5 flex-shrink-0`}
+                                        } h-5 w-5 flex-shrink-0`}
                                       aria-hidden="true"
                                     />
                                   ))}

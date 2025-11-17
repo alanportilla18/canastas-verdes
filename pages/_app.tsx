@@ -7,6 +7,10 @@ import { AuthProvider } from "@/context/Auth";
 import { LoadingProvider } from "@/context/Loading";
 import { ErrorProvider } from "@/context/Error";
 import { NotificationProvider } from "@/context/Notification";
+import { ProductCartProvider } from "@/context/ProductCart";
+import ProductCartDrawer from "@/components/productCartDrawer";
+import ProductCartButton from "@/components/productCartButton";
+import ProductOrderModal from "@/components/modals/productOrderModal";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -38,8 +42,13 @@ export default function App({ Component, pageProps }: AppProps) {
         <LoadingProvider>
           <ErrorProvider>
             <NotificationProvider>
-              <Header />
-              <Component {...pageProps} />
+              <ProductCartProvider>
+                <Header />
+                <Component {...pageProps} />
+                <ProductCartButton />
+                <ProductCartDrawer />
+                <ProductOrderModal />
+              </ProductCartProvider>
             </NotificationProvider>
           </ErrorProvider>
         </LoadingProvider>

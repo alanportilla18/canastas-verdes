@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import Image from "next/image";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import { HeartIcon } from "@heroicons/react/24/solid";
 
@@ -77,11 +78,10 @@ export default function MiRestaurante() {
                       {account && (
                         <button
                           onClick={handleAddToFavorite}
-                          className={`inline-flex items-center justify-center ${
-                            favorite
+                          className={`inline-flex items-center justify-center ${favorite
                               ? "text-red-500"
                               : "text-gray-200 hover:text-red-200"
-                          }`}
+                            }`}
                           disabled={favorite}
                         >
                           <HeartIcon className="ml-4 inline h-10 w-10" />
@@ -94,13 +94,15 @@ export default function MiRestaurante() {
                     </p>
                   </div>
                 </div>
-                <img
-                  src={restaurant?.image}
-                  alt="Product screenshot"
-                  className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
-                  width={2432}
-                  height={1442}
-                />
+                {restaurant?.image && (
+                  <Image
+                    src={restaurant.image}
+                    alt={`Imagen de ${restaurant.name}`}
+                    className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
+                    width={2432}
+                    height={1442}
+                  />
+                )}
               </div>
             </div>
           </div>

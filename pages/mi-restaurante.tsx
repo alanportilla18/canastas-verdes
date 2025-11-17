@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 
 import Loading from "@/components/loading";
 import { useAdmin } from "@/hooks/admin";
@@ -21,7 +22,7 @@ export default function MiRestaurante() {
     return (
       <>
         <Head>
-                    <title> Canastas Verdes - Mi Finca</title>
+          <title> Canastas Verdes - Mi Finca</title>
         </Head>
         <main className="mt-10 mx-auto flex max-w-7xl items-center justify-center">
           <Loading />
@@ -70,13 +71,15 @@ export default function MiRestaurante() {
                     Crear Categoria
                   </Link>
                 </div>
-                <img
-                  src={restaurant?.image}
-                  alt="Product screenshot"
-                  className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
-                  width={2432}
-                  height={1442}
-                />
+                {restaurant?.image && (
+                  <Image
+                    src={restaurant.image}
+                    alt={`Imagen de ${restaurant.name}`}
+                    className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
+                    width={2432}
+                    height={1442}
+                  />
+                )}
               </div>
             </div>
           </div>

@@ -20,6 +20,8 @@ import { AccountAndFavorites } from "@/types/AccountAndFavorites";
 import { prisma } from "@/lib/db";
 import { ProductoVender } from "@/types/ProductoVender";
 import PapaBlancaImg from "@/images/PAPA-BLANCA.jpg";
+import { useProductCart } from "@/context/ProductCart";
+import { useNotificationContext } from "@/context/Notification";
 
 export default function Home({
   productos,
@@ -62,7 +64,7 @@ export default function Home({
         />
 
         <FavoritesRestaurants account={account} />
-        <ProductsSection productos={productos} />
+        <ProductsSection productos={productos} account={account} />
       </main>
     </>
   );
@@ -70,14 +72,20 @@ export default function Home({
 
 type ProductsSectionProps = {
   productos: ProductoVender[];
+  account: AccountAndFavorites | undefined;
 };
 
-function ProductsSection({ productos }: ProductsSectionProps) {
+function ProductsSection({ productos, account }: ProductsSectionProps) {
   const [search, setSearch] = useState("");
   const [municipio, setMunicipio] = useState<string>("todos");
   const [categoria, setCategoria] = useState<string>("todos");
   const [precioMin, setPrecioMin] = useState<string>("");
   const [precioMax, setPrecioMax] = useState<string>("");
+  const [quantities, setQuantities] = useState<Record<number, number>>({});
+  const { addProduct } = useProductCart();
+  const { setNotification } = useNotificationContext();
+  const router = useRouter();
+  const canPurchase = Boolean(account && !account.admin);
 
   const municipios = useMemo(
     () =>
@@ -121,6 +129,46 @@ function ProductsSection({ productos }: ProductsSectionProps) {
     });
   }, [productos, search, municipio, categoria, precioMin, precioMax]);
 
+  const handleQuantityChange = useCallback((productId: number, value: number) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [productId]: Math.max(1, value),
+    }));
+  }, []);
+
+  const handleAddToCart = useCallback(
+    (producto: ProductoVender) => {
+      if (!account) {
+        setNotification({
+          title: "Inicia sesión para comprar",
+          description: "Debes iniciar sesión como usuario para usar el carrito",
+        });
+        router.push("/iniciar-sesion");
+        return;
+      }
+
+      if (account.admin) {
+        setNotification({
+          title: "Modo administrador",
+          description: "Ingresa con una cuenta de usuario para comprar productos",
+        });
+        return;
+      }
+
+      const quantity = quantities[producto.id] ?? 1;
+      addProduct(producto, quantity);
+      setNotification({
+        title: "Producto agregado",
+        description: `${producto.producto} x${quantity}`,
+      });
+      setQuantities((prev) => ({
+        ...prev,
+        [producto.id]: 1,
+      }));
+    },
+    [account, addProduct, quantities, router, setNotification]
+  );
+
   return (
     <section className="mb-16 px-4">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between mb-6">
@@ -150,7 +198,13 @@ function ProductsSection({ productos }: ProductsSectionProps) {
           onPrecioMaxChange={setPrecioMax}
         />
       </div>
-      <ProductsGrid productos={filteredProductos} />
+      <ProductsGrid
+        productos={filteredProductos}
+        quantities={quantities}
+        onQuantityChange={handleQuantityChange}
+        onAddToCart={handleAddToCart}
+        canPurchase={canPurchase}
+      />
       {filteredProductos.length === 0 && (
         <p className="mt-6 text-center text-gray-500">
           No encontramos productos que coincidan con tu búsqueda. Intenta con otros filtros.
@@ -272,9 +326,19 @@ function ProductsFilters({
 
 type ProductosGridProps = {
   productos: ProductoVender[];
+  quantities: Record<number, number>;
+  onQuantityChange: (productId: number, value: number) => void;
+  onAddToCart: (producto: ProductoVender) => void;
+  canPurchase: boolean;
 };
 
-function ProductsGrid({ productos }: ProductosGridProps) {
+function ProductsGrid({
+  productos,
+  quantities,
+  onQuantityChange,
+  onAddToCart,
+  canPurchase,
+}: ProductosGridProps) {
   if (!productos || productos.length === 0) {
     return null;
   }
@@ -312,6 +376,49 @@ function ProductsGrid({ productos }: ProductosGridProps) {
                 <dd>{producto.presentacion}</dd>
               </div>
             </dl>
+            <div className="flex items-center justify-between gap-3 pt-3">
+              <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1">
+                <button
+                  type="button"
+                  className="text-gray-500 hover:text-gray-700"
+                  onClick={() =>
+                    onQuantityChange(
+                      producto.id,
+                      (quantities[producto.id] ?? 1) - 1
+                    )
+                  }
+                >
+                  –
+                </button>
+                <span className="text-sm font-medium text-gray-900">
+                  {quantities[producto.id] ?? 1}
+                </span>
+                <button
+                  type="button"
+                  className="text-gray-500 hover:text-gray-700"
+                  onClick={() =>
+                    onQuantityChange(
+                      producto.id,
+                      (quantities[producto.id] ?? 1) + 1
+                    )
+                  }
+                >
+                  +
+                </button>
+              </div>
+              <button
+                className="flex-1 rounded-full bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700 disabled:cursor-not-allowed disabled:bg-gray-300"
+                onClick={() => onAddToCart(producto)}
+                disabled={!canPurchase}
+              >
+                Agregar
+              </button>
+            </div>
+            {!canPurchase && (
+              <p className="text-xs text-gray-400">
+                Inicia sesión como usuario para comprar.
+              </p>
+            )}
           </div>
         </article>
       ))}

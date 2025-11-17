@@ -4,6 +4,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { HeartIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import useSWR, { useSWRConfig } from "swr";
+import Image from "next/image";
 
 import { Dish } from "@/types/Dish";
 import {
@@ -32,7 +33,7 @@ export interface QuickviewsModalProps {
 
 export default function QuickviewsModal({
   dish,
-  onClose = () => {},
+  onClose = () => { },
 }: QuickviewsModalProps) {
   const { mutate } = useSWRConfig();
 
@@ -168,11 +169,13 @@ export default function QuickviewsModal({
                     </button>
 
                     <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
-                      <div className="aspect-h-3 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
-                        <img
+                      <div className="relative aspect-h-3 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
+                        <Image
                           src={dish.image}
                           alt={dish.name}
+                          fill
                           className="object-cover object-center"
+                          sizes="(min-width: 1024px) 320px, 100vw"
                         />
 
                         <FavoriteButton dish={dish} />
@@ -201,11 +204,10 @@ export default function QuickviewsModal({
                                 {[0, 1, 2, 3, 4].map((rating) => (
                                   <StarIcon
                                     key={rating}
-                                    className={`${
-                                      dish.rating > rating
+                                    className={`${dish.rating > rating
                                         ? "text-gray-900"
                                         : "text-gray-200"
-                                    } h-5 w-5 flex-shrink-0`}
+                                      } h-5 w-5 flex-shrink-0`}
                                     aria-hidden="true"
                                   />
                                 ))}
@@ -248,11 +250,10 @@ export default function QuickviewsModal({
                                             {[0, 1, 2, 3, 4].map((rating) => (
                                               <StarIcon
                                                 key={rating}
-                                                className={`${
-                                                  (review.rating || 0) > rating
+                                                className={`${(review.rating || 0) > rating
                                                     ? "text-gray-600"
                                                     : "text-gray-200"
-                                                } h-5 w-5 flex-shrink-0`}
+                                                  } h-5 w-5 flex-shrink-0`}
                                                 aria-hidden="true"
                                               />
                                             ))}
@@ -316,11 +317,10 @@ export default function QuickviewsModal({
                                               {[0, 1, 2, 3, 4].map((rating) => (
                                                 <StarIcon
                                                   key={rating}
-                                                  className={`${
-                                                    review.rating > rating
+                                                  className={`${review.rating > rating
                                                       ? "text-primary-600"
                                                       : "text-gray-200"
-                                                  } h-5 w-5 flex-shrink-0`}
+                                                    } h-5 w-5 flex-shrink-0`}
                                                   aria-hidden="true"
                                                   onClick={() =>
                                                     setReview({
@@ -419,11 +419,10 @@ function FavoriteButton({ dish }: { dish: Dish | undefined }) {
       {account && (
         <button
           onClick={handleAddToFavorite}
-          className={`inline-flex items-center justify-center rounded-lg ${
-            favorite
+          className={`inline-flex items-center justify-center rounded-lg ${favorite
               ? "bg-white bg-opacity-50 text-red-600"
               : "text-transparent hover:text-red-600 hover:bg-white hover:bg-opacity-50"
-          }`}
+            }`}
           disabled={favorite}
         >
           <HeartIcon className="h-10 w-10" />

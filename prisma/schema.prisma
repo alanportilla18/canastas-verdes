@@ -22,6 +22,7 @@ model Account {
   FavoriteDish       FavoriteDish[]
   FavoriteRestaurant FavoriteRestaurant[]
   Order              Order[]
+  ProductOrder       ProductOrder[]
   restaurant         Restaurant?
   RestaurantReview   RestaurantReview[]
 }
@@ -94,6 +95,39 @@ model DishesInOrder {
   order     Order     @relation(fields: [orderId], references: [id])
 
   @@unique([dishId, orderId])
+}
+
+model ProductOrder {
+  id        String                     @id @default(uuid())
+  name      String
+  address   String
+  phone     String
+  accountId String
+  total     Float                      @default(0)
+  status    String                     @default("pending")
+  createdAt DateTime                   @default(now())
+  updatedAt DateTime                   @updatedAt
+  deletedAt DateTime?
+  account   Account                    @relation(fields: [accountId], references: [id])
+  products  ProductsInProductOrder[]
+}
+
+model ProductsInProductOrder {
+  id             String          @id @default(uuid())
+  productOrderId String
+  productId      Int
+  productName    String
+  productCode    String
+  presentation   String
+  unitPrice      Float
+  quantity       Int
+  subtotal       Float
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  productOrder   ProductOrder    @relation(fields: [productOrderId], references: [id])
+  product        ProductosVender @relation(fields: [productId], references: [id])
+
+  @@unique([productOrderId, productId])
 }
 
 model Category {
@@ -189,6 +223,7 @@ model ProductosVender {
   precioVenta          Float
   createdAt            DateTime @default(now())
   updatedAt            DateTime @updatedAt
+  productEntries       ProductsInProductOrder[]
 
   @@map("productos_vender")
 }
